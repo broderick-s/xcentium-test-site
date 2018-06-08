@@ -5,7 +5,6 @@ import { Carousel } from 'react-bootstrap';
 
 import './Images.css';
 import 'react-table/react-table.css';
-import 'pure-react-carousel/dist/react-carousel.es.css';
 
 const images = ( props ) => {
     let tableData = props.images.map((val, i) => {

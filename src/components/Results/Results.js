@@ -4,10 +4,6 @@ import Images from './Images/Images';
 import Words from './Words/Words';
 
 class Results extends Component {
-    constructor(props) {
-        super(props);
-    }
-  
     render() {
         return (
             <React.Fragment>

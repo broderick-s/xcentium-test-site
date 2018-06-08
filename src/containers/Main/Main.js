@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row} from 'react-bootstrap';
 
 import Search from '../../components/Search/Search';
 import Results from '../../components/Results/Results';
@@ -32,7 +32,7 @@ class Main extends Component {
     getResults(url) {
         let apiUrl;
         if (process.env.NODE_ENV === 'production') {
-            apiUrl = "http://test.com/api/pageinfo";
+            apiUrl = "http://xcentium-test-api.herokuapp.com/api/pageinfo";
         } else {
             apiUrl = "http://localhost:8000/api/pageinfo";
         }
