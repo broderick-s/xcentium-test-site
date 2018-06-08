@@ -24,7 +24,7 @@ const words = (props) => {
     }];
 
     return (
-        <div >
+        <div className="words">
             <WordCount count={props.wordCount}/>
             <ReactTable 
                 data={tableData} 
