@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Grid, Row} from 'react-bootstrap';
+import { Grid, Row, Alert} from 'react-bootstrap';
 
 import Search from '../../components/Search/Search';
 import Results from '../../components/Results/Results';
@@ -12,19 +12,22 @@ class Main extends Component {
         this.state = {
             searchInput: '',
             searchReturned: false,
+            isError: false,
             results: {
                 images: [],
                 words: {
                     totalCount: 0,
                     topWords: []
-                }
+                },
+                error: ""
             }
         };
     }
 
     handleInput(input) {
         this.setState({
-            searchInput: input
+            searchInput: input,
+            searchReturned: false
         });
         this.getResults(input);
     }
@@ -46,9 +49,21 @@ class Main extends Component {
             })
             .then(function (json) {
                 console.log(json)
+                if (json.error){
+                    comp.setState({
+                        isError: true
+                    });
+                } else {
+                    comp.setState({
+                        results: json,
+                        isError: false,
+                        searchReturned: true
+                    });
+                }
+            }).catch(function() {
                 comp.setState({
-                    results: json,
-                    searchReturned: true
+                    isError: true,
+                    searchReturned: false
                 });
             });
 
@@ -59,10 +74,16 @@ class Main extends Component {
     }
 
     render() {
-
         return (
             <Grid>
                 <Search handleSearchInput={this.handleInput} />
+                {this.state.isError &&
+                    <Row>
+                        <Alert bsStyle="warning">
+                            Sorry! There was an error, try a full URL. (https://news.ycombinator.com/) The site searched for may not exist. 
+                        </Alert>
+                    </Row>
+                }
                 {this.state.searchReturned &&
                     <Row>
                         <h2>Results for: {this.state.searchInput}</h2>
