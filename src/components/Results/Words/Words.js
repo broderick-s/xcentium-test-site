@@ -33,6 +33,7 @@ const words = (props) => {
                 showPageSizeOptions={false}
                 minRows={1}
                 sortable={false}
+                showPagination={false}
                 className="-striped -highlight"/>
         </div>
     );
