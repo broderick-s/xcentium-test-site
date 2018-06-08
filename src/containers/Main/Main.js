@@ -48,7 +48,6 @@ class Main extends Component {
                 return response.json();
             })
             .then(function (json) {
-                console.log(json)
                 if (json.error){
                     comp.setState({
                         isError: true
